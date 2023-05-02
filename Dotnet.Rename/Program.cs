@@ -21,9 +21,8 @@ namespace Dotnet.Rename
         public const string SUBFOLDER_OPTION = "-s | --subfolder";
         private const string HelpOptions = "-? | -h | --help";
 
-        public static readonly Color ErrorColor = Color.OrangeRed;
         static void Log(string text) => Console.WriteLine(text);
-        static void Error(string text) => Console.Error.WriteLine(text, ErrorColor);
+        static void Error(string text) => Console.Error.WriteLine(text);
 
         static void Main(string[] args)
         {
