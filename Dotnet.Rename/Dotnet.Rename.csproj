@@ -2,12 +2,13 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <TargetFramework>net7.0</TargetFramework>
     <ToolCommandName>dotnet-rename</ToolCommandName>
     <PackAsTool>true</PackAsTool>
     <PackageVersion>1.0.5</PackageVersion>
     <PackageDescription>A global tool to reduce pain when moving/renaming projects repository wide.</PackageDescription>
     <RepositoryUrl>https://github.com/jrouaix/dotnet-rename</RepositoryUrl>
+    <PackageId>Mapolu.Dotnet.Rename</PackageId>
   </PropertyGroup>
 
   <ItemGroup>
