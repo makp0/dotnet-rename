@@ -71,7 +71,7 @@ namespace Dotnet.Rename
             }
             catch (Exception ex)
             {
-                Error(ex.Message);
+                Error(ex.ToString());
                 Environment.Exit(1);
             }
         }
@@ -247,7 +247,8 @@ namespace Dotnet.Rename
             var source = Path.GetDirectoryName(context.ProjectFullPath);
             var target = Path.GetDirectoryName(context.TargetFullPath);
             
-            Directory.Delete(target, true);
+            if (Directory.Exists(target))
+                Directory.Delete(target, true);
             
             context.Logger($"Moving directory '{source}' to '{target}'.");
 
