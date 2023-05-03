@@ -179,15 +179,17 @@ namespace Dotnet.Rename
                     for (int i = 0; i < file.Length; i++)
                     {
                         var line = file[i];
-                        var thisIsTheLine = line.StartsWith("Project(\"") && line.Contains(project.RelativePath);
+                        var thisIsTheLine = 
+                            line.StartsWith("Project(\"") 
+                            && line.Contains(
+                                    project.RelativePath.ToSlnPathFormat());
                         if (thisIsTheLine)
                         {
                             var projectNewPath = context.GetTargetPathFromPreviousPath(Path.GetRelativePath(context.RootPath, solutionFile), project.RelativePath);
 
                             file[i] = line
                                 .Replace($"\"{project.ProjectName}\"", $"\"{context.TargetName}\"")
-                                .Replace($"\"{project.RelativePath}\"", $"\"{projectNewPath}\"")
-                                ;
+                                .Replace($"\"{project.RelativePath.ToSlnPathFormat()}\"", $"\"{projectNewPath.ToSlnPathFormat()}\"");
                             break;
                         }
                     }
@@ -244,6 +246,9 @@ namespace Dotnet.Rename
         {
             var source = Path.GetDirectoryName(context.ProjectFullPath);
             var target = Path.GetDirectoryName(context.TargetFullPath);
+            
+            Directory.Delete(target, true);
+            
             context.Logger($"Moving directory '{source}' to '{target}'.");
 
             Directory.CreateDirectory(Path.GetDirectoryName(target));
@@ -312,4 +317,5 @@ namespace Dotnet.Rename
             }
         }
     }
+
 }
